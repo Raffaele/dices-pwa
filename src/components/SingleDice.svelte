@@ -46,13 +46,38 @@
   }
 </script>
 
-<div class:running={isRunning}>{value}/{max}</div>
+<div class="single-dice">
+  <strong class="dice-max">{max}</strong>
+  <div class="dice-value" class:running={isRunning}>{value}</div>
+</div>
 
 <style>
-  div {
-    font-size: 4em;
+  :root {
+    --starndard-border-radius: 10px;
+    color: white;
+  }
+  .single-dice {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 2px;
+    text-align: center;
+    width: 4em;
+  }
+  .dice-max {
+    background-color: var(--secondary-color);
+    border-top-left-radius: var(--starndard-border-radius);
+    border-top-right-radius: var(--starndard-border-radius);
+  }
+  .dice-value {
+    font-size: 3em;
+    border-bottom-left-radius: var(--starndard-border-radius);
+    border-bottom-right-radius: var(--starndard-border-radius);
+    border: 1px var(--secondary-color) solid;
+    border-top: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
   }
   .running {
-    color: darkgray;
+    opacity: 0.35;
   }
 </style>

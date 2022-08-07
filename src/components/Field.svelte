@@ -7,9 +7,17 @@
   }
 </script>
 
-<div>
+<div class="field">
   {#each dices as maxDice, i}
     <SingleDice attempt={20} max={maxDice} bind:this={diceInterface[i]} />
   {/each}
 </div>
 <button on:click={run}>GO!</button>
+<button>EDIT</button>
+
+<style>
+  .field {
+    display: flex;
+    justify-content: space-evenly;
+  }
+</style>

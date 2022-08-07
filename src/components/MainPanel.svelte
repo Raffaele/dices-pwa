@@ -1,14 +1,14 @@
 <script lang="ts">
   import Field from "./Field.svelte";
+  let dices = [6, 20];
 </script>
 
 <main>
-  <Field dices={[6, 20]} />
+  <Field {dices} />
 </main>
 
 <style>
   main {
-    background-color: cyan;
     width: 100%;
     flex: 1;
   }
