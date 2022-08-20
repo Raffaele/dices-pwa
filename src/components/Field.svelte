@@ -56,18 +56,18 @@
     {/if}
   </div>
 
-  {#if isEditMode}
-    <button on:click={save}>SAVE</button>
-  {:else}
-    <section class="cmd-section">
+  <section class="cmd-section">
+    {#if isEditMode}
+      <button on:click={save} class="cmd-btn cmd-save">SAVE</button>
+    {:else}
       <button on:click={edit} class="cmd-btn">
         <img src={EditIcon} alt="edit" />
       </button>
       <button on:click={run} disabled={isRunning} class="cmd-btn cmd-rerun">
         <img src={RunIcon} alt="Run" />
       </button>
-    </section>
-  {/if}
+    {/if}
+  </section>
 </div>
 
 <style>
@@ -92,5 +92,11 @@
   .cmd-rerun {
     padding-top: 0.1em;
     padding-left: 0.2em;
+  }
+  .cmd-save {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    padding: 1vh 2vw;
   }
 </style>
