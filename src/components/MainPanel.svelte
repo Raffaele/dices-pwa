@@ -1,7 +1,8 @@
 <script lang="ts">
   import Field from "./Field.svelte";
   let dices = [6];
-  let isEdit = false;
+  // TODO: To change as false before commit
+  let isEdit = true;
   function editField() {
     isEdit = true;
   }

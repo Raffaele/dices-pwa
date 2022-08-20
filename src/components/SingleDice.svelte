@@ -5,6 +5,7 @@
   export let max: number;
   export let attempt: number;
   export let isEditMode: boolean;
+  export let isDeleteBtnAvailable: boolean;
 
   let value: number;
   $: range = Array.from({ length: max }).map((_, i) => i + 1);
@@ -59,8 +60,8 @@
 </script>
 
 <div class="single-dice">
-  {#if isEditMode}
-    <button on:click={deleteDice}>X</button>
+  {#if isEditMode && isDeleteBtnAvailable}
+    <div on:click={deleteDice} class="delete-btn">+</div>
   {/if}
   <strong class="dice-max">{max}</strong>
   <div class="dice-value" class:running={isRunning}>{value}</div>
@@ -77,6 +78,8 @@
     margin: 2px;
     text-align: center;
     width: 4em;
+    position: relative;
+    margin: 1.5rem;
   }
   .dice-max {
     background-color: var(--secondary-color);
@@ -94,5 +97,18 @@
   }
   .running {
     opacity: 0.35;
+  }
+  .delete-btn {
+    position: absolute;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    right: -20%;
+    top: -20%;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    transform: rotate(45deg);
+    font-size: 1.5em;
+    border: 1px var(--primary-color) solid;
   }
 </style>

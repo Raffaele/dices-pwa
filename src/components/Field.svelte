@@ -41,6 +41,7 @@
       max={dice.maxValue}
       bind:this={diceInterface[i]}
       {isEditMode}
+      isDeleteBtnAvailable={dices.length > 1}
       on:isRuningChange={({ detail }) => (dice.isRunning = detail)}
       on:delete={() => dispatch("deleteDice", i)}
     />
@@ -51,7 +52,6 @@
 </div>
 
 {#if isEditMode}
-  <button>+</button>
   <button on:click={save}>SAVE</button>
 {:else}
   <button on:click={edit}>EDIT</button>
@@ -62,5 +62,6 @@
   .field {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
   }
 </style>
