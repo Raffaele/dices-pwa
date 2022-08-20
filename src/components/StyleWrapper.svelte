@@ -21,4 +21,15 @@
     flex-direction: column;
     height: 100vh;
   }
+
+  :global(.cmd-btn) {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    border: 1px var(--primary-color) solid;
+    text-align: center;
+  }
 </style>

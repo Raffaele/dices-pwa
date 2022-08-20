@@ -61,7 +61,7 @@
 
 <div class="single-dice">
   {#if isEditMode && isDeleteBtnAvailable}
-    <div on:click={deleteDice} class="delete-btn">+</div>
+    <div on:click={deleteDice} class="cmd-btn delete-btn">+</div>
   {/if}
   <strong class="dice-max">{max}</strong>
   <div class="dice-value" class:running={isRunning}>{value}</div>
@@ -100,15 +100,8 @@
   }
   .delete-btn {
     position: absolute;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
     right: -20%;
     top: -20%;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
     transform: rotate(45deg);
-    font-size: 1.5em;
-    border: 1px var(--primary-color) solid;
   }
 </style>

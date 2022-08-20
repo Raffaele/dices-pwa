@@ -34,18 +34,20 @@
   }
 </script>
 
-<div class="field">
-  {#each dicesData as dice, i}
-    <SingleDice
-      {attempt}
-      max={dice.maxValue}
-      bind:this={diceInterface[i]}
-      {isEditMode}
-      isDeleteBtnAvailable={dices.length > 1}
-      on:isRuningChange={({ detail }) => (dice.isRunning = detail)}
-      on:delete={() => dispatch("deleteDice", i)}
-    />
-  {/each}
+<div>
+  <div class="field">
+    {#each dicesData as dice, i}
+      <SingleDice
+        {attempt}
+        max={dice.maxValue}
+        bind:this={diceInterface[i]}
+        {isEditMode}
+        isDeleteBtnAvailable={dices.length > 1}
+        on:isRuningChange={({ detail }) => (dice.isRunning = detail)}
+        on:delete={() => dispatch("deleteDice", i)}
+      />
+    {/each}
+  </div>
   {#if isEditMode}
     <DiceCreator on:createVaule />
   {/if}
