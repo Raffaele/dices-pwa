@@ -1,12 +1,23 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
+  import { onDestroy, createEventDispatcher } from "svelte";
   export let max: number;
   export let attempt: number;
-  const range = Array.from({ length: max }).map((_, i) => i + 1);
-  let value = getRandomElement(range);
+  export let isEditMode: boolean;
+
+  let value: number;
+  $: range = Array.from({ length: max }).map((_, i) => i + 1);
+  $: {
+    value = getRandomElement(range);
+  }
+
   let intervalId: ReturnType<typeof setInterval> | null = null;
   let isRunning = false;
+
+  const dispatch = createEventDispatcher();
   export function run() {
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
     isRunning = true;
     const list = getRandomList(attempt, range, value);
     let listId = 0;
@@ -19,6 +30,8 @@
       }
     }, 80);
   }
+
+  $: dispatch("isRuningChange", isRunning);
 
   onDestroy(() => {
     if (intervalId !== null) {
@@ -44,9 +57,16 @@
       return [...fullList, prevNumber];
     }, []);
   }
+
+  function deleteDice() {
+    dispatch("delete");
+  }
 </script>
 
 <div class="single-dice">
+  {#if isEditMode}
+    <button on:click={deleteDice}>X</button>
+  {/if}
   <strong class="dice-max">{max}</strong>
   <div class="dice-value" class:running={isRunning}>{value}</div>
 </div>
