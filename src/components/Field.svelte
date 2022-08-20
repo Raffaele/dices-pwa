@@ -1,4 +1,6 @@
 <script lang="ts">
+  import EditIcon from "../assets/edit-btn.svg";
+  import RunIcon from "../assets/launch-btn.svg";
   import { getRandomNumberElement } from "../lib/get-random-number-element";
 
   import { createEventDispatcher } from "svelte";
@@ -34,36 +36,61 @@
   }
 </script>
 
-<div>
-  <div class="field">
-    {#each dicesData as dice, i}
-      <SingleDice
-        {attempt}
-        max={dice.maxValue}
-        bind:this={diceInterface[i]}
-        {isEditMode}
-        isDeleteBtnAvailable={dices.length > 1}
-        on:isRuningChange={({ detail }) => (dice.isRunning = detail)}
-        on:delete={() => dispatch("deleteDice", i)}
-      />
-    {/each}
+<div class="field">
+  <div>
+    <div class="field-dices">
+      {#each dicesData as dice, i}
+        <SingleDice
+          {attempt}
+          max={dice.maxValue}
+          bind:this={diceInterface[i]}
+          {isEditMode}
+          isDeleteBtnAvailable={dices.length > 1}
+          on:isRuningChange={({ detail }) => (dice.isRunning = detail)}
+          on:delete={() => dispatch("deleteDice", i)}
+        />
+      {/each}
+    </div>
+    {#if isEditMode}
+      <DiceCreator on:createVaule />
+    {/if}
   </div>
+
   {#if isEditMode}
-    <DiceCreator on:createVaule />
+    <button on:click={save}>SAVE</button>
+  {:else}
+    <section class="cmd-section">
+      <button on:click={edit} class="cmd-btn">
+        <img src={EditIcon} alt="edit" />
+      </button>
+      <button on:click={run} disabled={isRunning} class="cmd-btn cmd-rerun">
+        <img src={RunIcon} alt="Run" />
+      </button>
+    </section>
   {/if}
 </div>
 
-{#if isEditMode}
-  <button on:click={save}>SAVE</button>
-{:else}
-  <button on:click={edit}>EDIT</button>
-  <button on:click={run} disabled={isRunning}>GO!</button>
-{/if}
-
 <style>
   .field {
+    padding: 1vh 2vw 0;
+  }
+  .field-dices {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  }
+  img {
+    width: 20px;
+  }
+  .cmd-section {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .cmd-btn:disabled {
+    opacity: 0.5;
+  }
+  .cmd-rerun {
+    padding-top: 0.1em;
+    padding-left: 0.2em;
   }
 </style>
