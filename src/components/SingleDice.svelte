@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getRandomNumberElement } from "../lib/get-random-number-element";
+
   import { onDestroy, createEventDispatcher } from "svelte";
   export let max: number;
   export let attempt: number;
@@ -7,7 +9,7 @@
   let value: number;
   $: range = Array.from({ length: max }).map((_, i) => i + 1);
   $: {
-    value = getRandomElement(range);
+    value = getRandomNumberElement(range);
   }
 
   let intervalId: ReturnType<typeof setInterval> | null = null;
@@ -39,13 +41,6 @@
     }
   });
 
-  function getRandomElement(fullRange: number[], prevNumber = -1) {
-    const purgedRange = fullRange.filter((p) => p !== prevNumber);
-    const newIndex = Math.trunc(Math.random() * purgedRange.length);
-    const newNumber = purgedRange[newIndex];
-    return newNumber;
-  }
-
   function getRandomList(
     length: number,
     fullRange: number[],
@@ -53,7 +48,7 @@
   ) {
     let prevNumber = initialNumber;
     return Array.from({ length }).reduce<number[]>((fullList) => {
-      prevNumber = getRandomElement(fullRange, prevNumber);
+      prevNumber = getRandomNumberElement(fullRange, prevNumber);
       return [...fullList, prevNumber];
     }, []);
   }

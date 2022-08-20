@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getRandomNumberElement } from "../lib/get-random-number-element";
+
   import { createEventDispatcher } from "svelte";
   import DiceCreator from "./DiceCreator.svelte";
   import SingleDice from "./SingleDice.svelte";
@@ -9,6 +11,15 @@
   $: dicesData = dices.map((maxValue) => ({ maxValue, isRunning: false }));
 
   const dispatch = createEventDispatcher();
+  let attempt = 20;
+
+  $: isRunning = dicesData.some(({ isRunning }) => isRunning);
+
+  $: {
+    if (!isRunning) {
+      attempt = getRandomNumberElement([18, 19, 20, 21, 22, 23]);
+    }
+  }
 
   function run() {
     diceInterface.forEach((singeDice) => singeDice?.run());
@@ -21,14 +32,12 @@
   function save() {
     dispatch("save");
   }
-
-  $: isRunning = dicesData.some(({ isRunning }) => isRunning);
 </script>
 
 <div class="field">
   {#each dicesData as dice, i}
     <SingleDice
-      attempt={20}
+      {attempt}
       max={dice.maxValue}
       bind:this={diceInterface[i]}
       {isEditMode}
