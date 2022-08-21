@@ -17,12 +17,14 @@ export default defineConfig({
         name: 'Dices PWA',
         short_name: 'dices pwa',
         description: 'PWA to handle several dices',
-        theme_color: '#ffffff',
+        theme_color: '#64c864',
+        orientation: 'portrait',
         icons: [
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'maskable'
           },
           {
             src: 'pwa-512x512.png',

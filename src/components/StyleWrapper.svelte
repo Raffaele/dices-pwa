@@ -7,7 +7,7 @@
   }
 
   :global(body) {
-    background-color: rgb(100 200 100);
+    background-color: #64c864;
     margin: 0;
   }
 
