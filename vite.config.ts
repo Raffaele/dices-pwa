@@ -17,7 +17,7 @@ export default defineConfig({
         name: 'Dices PWA',
         short_name: 'dices pwa',
         description: 'PWA to handle several dices',
-        theme_color: '#64c864',
+        theme_color: 'green',
         orientation: 'portrait',
         icons: [
           {
