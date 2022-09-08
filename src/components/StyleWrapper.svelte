@@ -31,5 +31,8 @@
     font-size: 1.5rem;
     border: 1px var(--primary-color) solid;
     text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

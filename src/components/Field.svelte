@@ -63,7 +63,7 @@
       <button on:click={edit} class="cmd-btn">
         <img src={EditIcon} alt="edit" />
       </button>
-      <button on:click={run} disabled={isRunning} class="cmd-btn cmd-rerun">
+      <button on:click={run} disabled={isRunning} class="cmd-btn">
         <img src={RunIcon} alt="Run" />
       </button>
     {/if}
@@ -88,10 +88,6 @@
   }
   .cmd-btn:disabled {
     opacity: 0.5;
-  }
-  .cmd-rerun {
-    padding-top: 0.1em;
-    padding-left: 0.2em;
   }
   .cmd-save {
     width: auto;
